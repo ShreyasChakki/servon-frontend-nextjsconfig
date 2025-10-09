@@ -9,6 +9,12 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  // Disable development indicators completely
+  devIndicators: false,
+  // Disable development overlay
+  experimental: {
+    scrollRestoration: true,
+  }
 }
 
 export default nextConfig

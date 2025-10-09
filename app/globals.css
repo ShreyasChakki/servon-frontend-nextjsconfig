@@ -3,6 +3,35 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* Hide Next.js development indicators */
+#__next-dev-overlay-button {
+  display: none !important;
+}
+
+.__nextjs_original-stack-frame {
+  display: none !important;
+}
+
+/* Hide any Next.js branding/logos in development */
+[data-nextjs-toast],
+.__nextjs-container,
+.__nextjs-toast-errors-parent,
+[id*="__nextjs"],
+[class*="__nextjs"] {
+  display: none !important;
+}
+
+/* Hide development mode indicators */
+.__react-devtools-root {
+  display: none !important;
+}
+
+/* Additional Next.js development overlay hiding */
+[data-nextjs-dev-overlay],
+[data-nextjs-dev-overlay-button] {
+  display: none !important;
+}
+
 :root {
   --background: hsl(0 0% 100%);
   --foreground: hsl(25 20% 15%);

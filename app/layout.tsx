@@ -4,11 +4,13 @@ import { GeistSans } from "geist/font/sans"
 import { GeistMono } from "geist/font/mono"
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
+import "../styles/hide-dev-indicators.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Navbar } from "@/components/navbar"
 import { Suspense } from "react"
 import { AuthProvider } from "@/context/auth-context"
 import ChatbotWidget from "@/components/chatbot-widget"
+import ClientOnly from "@/components/client-only"
 
 export const metadata: Metadata = {
   title: "v0 App",
@@ -23,14 +25,19 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable}`}>
+      <body 
+        className={`font-sans ${GeistSans.variable} ${GeistMono.variable}`}
+        suppressHydrationWarning
+      >
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
           <AuthProvider>
             <Suspense fallback={null}>
               <Navbar />
             </Suspense>
             <main className="min-h-dvh">{children}</main>
-            <ChatbotWidget />
+            <ClientOnly>
+              <ChatbotWidget />
+            </ClientOnly>
           </AuthProvider>
         </ThemeProvider>
         <Analytics />

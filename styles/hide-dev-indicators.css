@@ -1,0 +1,61 @@
+/* Hide Next.js Development Indicators */
+
+/* Primary Next.js development overlay button (usually bottom-left) */
+#__nextjs-dev-overlay-button,
+.__nextjs-dev-overlay-button,
+[data-nextjs-dev-overlay-button] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* Next.js development overlays */
+#__nextjs-dev-overlay,
+.__nextjs-dev-overlay,
+[data-nextjs-dev-overlay] {
+  display: none !important;
+}
+
+/* Next.js build activity indicator */
+#__nextjs-build-indicator,
+.__nextjs-build-indicator,
+[data-nextjs-build-indicator] {
+  display: none !important;
+}
+
+/* Any element with Next.js in class or id */
+[id*="nextjs" i],
+[class*="nextjs" i] {
+  display: none !important;
+}
+
+/* Development toasts and error messages */
+[data-nextjs-toast],
+.__nextjs-container,
+.__nextjs-toast-errors-parent {
+  display: none !important;
+}
+
+/* React DevTools */
+.__react-devtools-root {
+  display: none !important;
+}
+
+/* Additional development tools */
+[data-dev-overlay],
+[class*="dev-overlay"] {
+  display: none !important;
+}
+
+/* Hide any fixed positioned elements that might be development indicators */
+div[style*="position: fixed"][style*="bottom"][style*="left"] {
+  display: none !important;
+}
+
+/* Specific targeting for common Next.js dev button styles */
+button[style*="position: fixed"][style*="bottom"][style*="left"],
+div[style*="position: fixed"][style*="z-index: 99999"],
+div[style*="position: fixed"][style*="z-index: 9999"] {
+  display: none !important;
+}
