@@ -2,6 +2,19 @@
 
 A modern Next.js application for the ServonF platform, featuring a comprehensive service marketplace with customer and provider portals, real-time chat, quotation management, and administrative dashboard.
 
+## 🚀 Quick Start
+
+**TL;DR - Run these commands to get started:**
+
+```bash
+git clone https://github.com/ShreyasChakki/servon-frontend-nextjsconfig.git
+cd servon-frontend-nextjsconfig
+npm install --legacy-peer-deps
+npm run dev
+```
+
+Your app will be running at `http://localhost:3000` (or the next available port).
+
 ## 🚀 Features
 
 - **Multi-role Authentication System** (Customer, Provider, Admin)
@@ -46,7 +59,7 @@ npm --version
 ### 1. Clone the Repository
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/ShreyasChakki/servon-frontend-nextjsconfig.git
 cd servon-frontend-nextjsconfig
 ```
 
@@ -161,19 +174,32 @@ servon-frontend-nextjsconfig/
 
 ### Common Issues and Solutions
 
-#### 1. Dependency Conflicts
-If you encounter peer dependency warnings or errors:
+#### 1. Dependency Conflicts (Zod Version Issues)
+If you encounter peer dependency warnings or errors, especially with Zod packages:
 
+**Error Example:**
+```
+npm warn ERESOLVE overriding peer dependency
+npm warn Could not resolve dependency: peer zod@"^3.25.76 || ^4.1.8"
+```
+
+**Solution:**
 ```bash
 # Clear npm cache
 npm cache clean --force
 
-# Remove node_modules and package-lock.json
+# Remove node_modules and package-lock.json (Windows)
+rmdir /s node_modules
+del package-lock.json
+
+# Or on Unix/Mac
 rm -rf node_modules package-lock.json
 
-# Reinstall with legacy peer deps
+# Reinstall with legacy peer deps (REQUIRED for this project)
 npm install --legacy-peer-deps
 ```
+
+**Why this happens:** The project uses Zod version 3.25.67, but some AI SDK packages require newer versions. The `--legacy-peer-deps` flag resolves this conflict.
 
 #### 2. Port Already in Use
 If port 3000 is already in use:
@@ -198,7 +224,21 @@ npx tsc --noEmit
 npm update @types/node @types/react @types/react-dom
 ```
 
-#### 4. Tailwind CSS Not Working
+#### 4. Build Cache Issues
+If you encounter build errors or the app won't start properly:
+
+```bash
+# Remove Next.js build cache (Windows)
+rmdir /s .next
+
+# Or on Unix/Mac
+rm -rf .next
+
+# Then restart the development server
+npm run dev
+```
+
+#### 5. Tailwind CSS Not Working
 If styles aren't loading:
 
 1. Check if `globals.css` is imported in `layout.tsx`
